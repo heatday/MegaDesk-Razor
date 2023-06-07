@@ -1,5 +1,7 @@
 using MegaDesk_Razor.Data;
 using Microsoft.EntityFrameworkCore;
+using MegaDesk_Razor.Models;
+using RazorPagesMovie.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,12 @@ builder.Services.AddDbContext<MegaDeskContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MegaDeskContext") ?? throw new InvalidOperationException("Connection string 'MegaDeskContext' not found.")));
 
 var app = builder.Build();
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    SeedData.Initialize(services);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
