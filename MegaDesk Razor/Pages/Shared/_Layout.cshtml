@@ -7,6 +7,25 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MegaDesk_Razor.styles.css" asp-append-version="true" />
+    <style>
+        body {
+            display: flex;
+            background-color: #E5F0FF;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            flex: 1;
+        }
+
+        .footer {
+            background-color: #FC6E51; 
+            color: #FFFFFF; 
+            padding: 20px;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -23,8 +42,11 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Quote">Quote</a>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
+                        
                     </ul>
                 </div>
             </div>
