@@ -2,13 +2,14 @@
 {
     public class Quote
     {
-        public string customerName { get; set; }
-        public string deliveryType { get; set; }
-        public int width { get; set; }
-        public int depth { get; set; }
-        public int drawerCount { get; set; }
-        public string material { get; set; }
-        public int cost { get; set; }
+        public int Id { get; set; }
+        public string CustomerName { get; set; }
+        public string DeliveryType { get; set; }
+        public int Width { get; set; }
+        public int Depth { get; set; }
+        public int DrawerCount { get; set; }
+        public string Material { get; set; }
+        public int Cost { get; set; }
 
     }
 }

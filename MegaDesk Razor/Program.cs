@@ -1,7 +1,12 @@
+using MegaDesk_Razor.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<MegaDeskContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MegaDeskContext") ?? throw new InvalidOperationException("Connection string 'MegaDeskContext' not found.")));
 
 var app = builder.Build();
 

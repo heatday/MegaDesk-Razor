@@ -1,0 +1,72 @@
+﻿@page
+@model MegaDesk_Razor.Pages.Quotes.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].CustomerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].DeliveryType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].Width)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].Depth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].DrawerCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].Material)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].Cost)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Quote) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliveryType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Width)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Depth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DrawerCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Material)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
