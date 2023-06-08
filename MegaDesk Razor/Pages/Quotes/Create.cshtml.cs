@@ -25,26 +25,47 @@ namespace MegaDesk_Razor.Pages.Quotes
 
         public async Task OnGet()
         {
-            DeliveryTypes = new SelectList(await _context.DeliveryTypes.ToListAsync(), "Id", "Name");
-            Materials = new SelectList(await _context.Materials.ToListAsync(), "Id", "Name");
+            var deliveryTypes = await _context.DeliveryTypes.ToListAsync();
+            DeliveryTypes = new SelectList(deliveryTypes, "Id", "Type");
+
+            var materials = await _context.Materials.ToListAsync();
+            Materials = new SelectList(materials, "Id", "Name");
         }
 
+
         [BindProperty]
-        public Quote Quote { get; set; } = default!;
-        
+        public Quote Quote { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Quotes == null || Quote == null)
+            
+
+            if (!ModelState.IsValid || Quote == null)
             {
+                DeliveryTypes = new SelectList(await _context.DeliveryTypes.ToListAsync(), "Id", "Type");
+                Materials = new SelectList(await _context.Materials.ToListAsync(), "Id", "Name");
+                return Page();
+            }
+
+            Quote.DeliveryType = await _context.DeliveryTypes.FindAsync(Quote.DeliveryTypeId);
+
+            if (Quote.DeliveryType == null)
+            {
+                // Handle the case when the DeliveryType is not found
+                ModelState.AddModelError(string.Empty, "Invalid Delivery Type");
+                DeliveryTypes = new SelectList(await _context.DeliveryTypes.ToListAsync(), "Id", "Type");
+                Materials = new SelectList(await _context.Materials.ToListAsync(), "Id", "Name");
                 return Page();
             }
 
             _context.Quotes.Add(Quote);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Index", new { id = Quote.Id });
         }
+
+
     }
 }
