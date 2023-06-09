@@ -6,16 +6,16 @@ namespace MegaDesk_Razor.Models
     public class Quote
     {
         public int Id { get; set; }
-        public string CustomerName { get; set; }
+        public string? CustomerName { get; set; }
         public int DeliveryTypeId { get; set; }
         public int MaterialId { get; set; }
         public int Width { get; set; }
         public int Depth { get; set; }
         public int DrawerCount { get; set; }
 
-        public DeliveryType DeliveryType { get; set; }
+        public DeliveryType? DeliveryType { get; set; }
 
-        public Material Material { get; set; }
+        public Material? Material { get; set; }
 
         public double Price => CalculatePrice();
 

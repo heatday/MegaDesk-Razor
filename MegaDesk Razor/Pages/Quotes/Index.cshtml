@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{searchString?}"
 @model MegaDesk_Razor.Pages.Quotes.IndexModel
 
 @{
@@ -14,53 +14,50 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Quote[0].CustomerName)
+                Customer Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Quote[0].DeliveryType)
+                Quote Price
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Quote[0].Width)
+                Delivery
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Quote[0].Depth)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Quote[0].DrawerCount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Quote[0].Material)
+                Material
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Quote) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DeliveryType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Width)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Depth)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DrawerCount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Material)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Quote)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @if (item.DeliveryType != null)
+                    {
+                        @Html.DisplayFor(modelItem => item.DeliveryType.Type)  
+                    }
+                </td>
+                <td>
+                    @if (item.Material != null)
+                    {
+                        @Html.DisplayFor(modelItem => item.Material.Name)
+                    }
+                </td>
+
+
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

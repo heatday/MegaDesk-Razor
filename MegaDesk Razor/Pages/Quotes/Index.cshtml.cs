@@ -19,14 +19,24 @@ namespace MegaDesk_Razor.Pages.Quotes
             _context = context;
         }
 
-        public IList<Quote> Quote { get;set; } = default!;
+        public IList<Quote> Quote { get; set; }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string searchString)
         {
-            if (_context.Quotes != null)
+            var quotesQuery = _context.Quotes
+                .Include(q => q.DeliveryType) // Include the DeliveryType property
+                .Include(q => q.Material) // Include the DeliveryType property
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchString))
             {
-                Quote = await _context.Quotes.ToListAsync();
+                quotesQuery = quotesQuery.Where(q => q.CustomerName.Contains(searchString));
             }
+
+            Quote = await quotesQuery.ToListAsync();
         }
     }
+
 }
+    
+

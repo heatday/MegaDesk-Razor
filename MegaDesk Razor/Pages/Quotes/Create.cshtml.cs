@@ -30,6 +30,7 @@ namespace MegaDesk_Razor.Pages.Quotes
 
             var materials = await _context.Materials.ToListAsync();
             Materials = new SelectList(materials, "Id", "Name");
+
         }
 
 
@@ -40,9 +41,7 @@ namespace MegaDesk_Razor.Pages.Quotes
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> OnPostAsync()
         {
-            
-
-            if (!ModelState.IsValid || Quote == null)
+            if (!ModelState.IsValid)
             {
                 DeliveryTypes = new SelectList(await _context.DeliveryTypes.ToListAsync(), "Id", "Type");
                 Materials = new SelectList(await _context.Materials.ToListAsync(), "Id", "Name");
@@ -63,8 +62,9 @@ namespace MegaDesk_Razor.Pages.Quotes
             _context.Quotes.Add(Quote);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index", new { id = Quote.Id });
+            return RedirectToPage("./Index");
         }
+
 
 
     }

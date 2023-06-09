@@ -3,6 +3,6 @@
     public class DeliveryType
     {
         public int Id { get; set; }
-        public string Type { get; set; }
+        public required string Type { get; set; }
     }
 }
