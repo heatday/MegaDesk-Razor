@@ -20,7 +20,7 @@ namespace MegaDesk_Razor.Pages.Quotes
         }
 
         [BindProperty]
-      public Quote Quote { get; set; } = default!;
+        public Quote Quote { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,16 +29,20 @@ namespace MegaDesk_Razor.Pages.Quotes
                 return NotFound();
             }
 
-            var quote = await _context.Quotes.FirstOrDefaultAsync(m => m.Id == id);
+            var quote = await _context.Quotes
+                .Include(q => q.DeliveryType)
+                .Include(q => q.Material)
+                .FirstOrDefaultAsync(m => m.Id == id);
 
             if (quote == null)
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 Quote = quote;
             }
+
             return Page();
         }
 

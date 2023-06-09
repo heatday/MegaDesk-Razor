@@ -20,6 +20,9 @@ namespace MegaDesk_Razor.Pages.Quotes
             _context = context;
         }
 
+        public SelectList DeliveryTypes { get; set; }
+        public SelectList Materials { get; set; }
+
         [BindProperty]
         public Quote Quote { get; set; } = default!;
 
@@ -30,12 +33,23 @@ namespace MegaDesk_Razor.Pages.Quotes
                 return NotFound();
             }
 
-            var quote =  await _context.Quotes.FirstOrDefaultAsync(m => m.Id == id);
+            var quote = await _context.Quotes
+                .Include(q => q.DeliveryType)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
             if (quote == null)
             {
                 return NotFound();
             }
+
             Quote = quote;
+
+            var deliveryTypes = await _context.DeliveryTypes.ToListAsync();
+            DeliveryTypes = new SelectList(deliveryTypes, "Id", "Type", Quote.DeliveryType);
+
+            var materials = await _context.Materials.ToListAsync();
+            Materials = new SelectList(materials, "Id", "Name", Quote.Material);
+
             return Page();
         }
 
@@ -45,6 +59,28 @@ namespace MegaDesk_Razor.Pages.Quotes
         {
             if (!ModelState.IsValid)
             {
+                var deliveryTypes = await _context.DeliveryTypes.ToListAsync();
+                DeliveryTypes = new SelectList(deliveryTypes, "Id", "Type", Quote.DeliveryType);
+
+                var materials = await _context.Materials.ToListAsync();
+                Materials = new SelectList(materials, "Id", "Name", Quote.Material);
+
+                return Page();
+            }
+
+            Quote.DeliveryType = await _context.DeliveryTypes.FindAsync(Quote.DeliveryTypeId);
+
+            if (Quote.DeliveryType == null)
+            {
+                // Handle the case when the DeliveryType is not found
+                ModelState.AddModelError(string.Empty, "Invalid Delivery Type");
+
+                var deliveryTypes = await _context.DeliveryTypes.ToListAsync();
+                DeliveryTypes = new SelectList(deliveryTypes, "Id", "Type", Quote.DeliveryType);
+
+                var materials = await _context.Materials.ToListAsync();
+                Materials = new SelectList(materials, "Id", "Name", Quote.Material);
+
                 return Page();
             }
 
@@ -71,7 +107,7 @@ namespace MegaDesk_Razor.Pages.Quotes
 
         private bool QuoteExists(int id)
         {
-          return (_context.Quotes?.Any(e => e.Id == id)).GetValueOrDefault();
+            return _context.Quotes.Any(e => e.Id == id);
         }
     }
 }

@@ -14,12 +14,12 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Quote.CustomerName" class="control-label"></label>
+                <label asp-for="Quote.CustomerName" class="control-label">Customer Name</label>
                 <input asp-for="Quote.CustomerName" class="form-control" />
                 <span asp-validation-for="Quote.CustomerName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Quote.DeliveryTypeId" class="control-label"></label>
+                <label asp-for="Quote.DeliveryTypeId" class="control-label">Delivery</label>
                 <select asp-for="Quote.DeliveryTypeId" asp-items="Model.DeliveryTypes" class="form-control"></select>
                 <span asp-validation-for="Quote.DeliveryTypeId" class="text-danger"></span>
             </div>
@@ -34,12 +34,12 @@
                 <span asp-validation-for="Quote.Depth" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Quote.DrawerCount" class="control-label"></label>
+                <label asp-for="Quote.DrawerCount" class="control-label">Drawer</label>
                 <input asp-for="Quote.DrawerCount" class="form-control" />
                 <span asp-validation-for="Quote.DrawerCount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Quote.MaterialId" class="control-label"></label>
+                <label asp-for="Quote.MaterialId" class="control-label">Material</label>
                 <select asp-for="Quote.MaterialId" asp-items="Model.Materials" class="form-control"></select>
                 <span asp-validation-for="Quote.MaterialId" class="text-danger"></span>
             </div>

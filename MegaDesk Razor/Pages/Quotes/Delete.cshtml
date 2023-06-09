@@ -13,16 +13,16 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Quote.CustomerName)
+            @Html.DisplayName("Customer Name")
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Quote.CustomerName)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Quote.DeliveryType)
+            @Html.DisplayName("Delivery")
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Quote.DeliveryType)
+            @Html.DisplayFor(model => model.Quote.DeliveryType.Type)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Quote.Width)
@@ -37,19 +37,19 @@
             @Html.DisplayFor(model => model.Quote.Depth)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Quote.DrawerCount)
+            @Html.DisplayName("Drawer")
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Quote.DrawerCount)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Quote.Material)
+            @Html.DisplayName("Material")
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Quote.Material)
+            @Html.DisplayFor(model => model.Quote.Material.Name)
         </dd>
     </dl>
-    
+
     <form method="post">
         <input type="hidden" asp-for="Quote.Id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |

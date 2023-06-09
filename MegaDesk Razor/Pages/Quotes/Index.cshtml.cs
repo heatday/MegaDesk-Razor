@@ -25,7 +25,7 @@ namespace MegaDesk_Razor.Pages.Quotes
         {
             var quotesQuery = _context.Quotes
                 .Include(q => q.DeliveryType) // Include the DeliveryType property
-                .Include(q => q.Material) // Include the DeliveryType property
+                .Include(q => q.Material) // Include the Material property
                 .AsQueryable();
 
             if (!string.IsNullOrEmpty(searchString))

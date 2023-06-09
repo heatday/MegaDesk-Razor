@@ -15,14 +15,14 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Quote.Id" />
             <div class="form-group">
-                <label asp-for="Quote.CustomerName" class="control-label"></label>
+                <label asp-for="Quote.CustomerName" class="control-label">Customer Name</label>
                 <input asp-for="Quote.CustomerName" class="form-control" />
                 <span asp-validation-for="Quote.CustomerName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Quote.DeliveryType" class="control-label"></label>
-                <input asp-for="Quote.DeliveryType" class="form-control" />
-                <span asp-validation-for="Quote.DeliveryType" class="text-danger"></span>
+                <label asp-for="Quote.DeliveryTypeId" class="control-label">Delivery</label>
+                <select asp-for="Quote.DeliveryTypeId" asp-items="Model.DeliveryTypes" class="form-control"></select>
+                <span asp-validation-for="Quote.DeliveryTypeId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Quote.Width" class="control-label"></label>
@@ -35,14 +35,14 @@
                 <span asp-validation-for="Quote.Depth" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Quote.DrawerCount" class="control-label"></label>
+                <label asp-for="Quote.DrawerCount" class="control-label">Drawer</label>
                 <input asp-for="Quote.DrawerCount" class="form-control" />
                 <span asp-validation-for="Quote.DrawerCount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Quote.Material" class="control-label"></label>
-                <input asp-for="Quote.Material" class="form-control" />
-                <span asp-validation-for="Quote.Material" class="text-danger"></span>
+                <label asp-for="Quote.MaterialId" class="control-label">Material</label>
+                <select asp-for="Quote.MaterialId" asp-items="Model.Materials" class="form-control"></select>
+                <span asp-validation-for="Quote.MaterialId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
@@ -56,5 +56,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
