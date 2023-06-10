@@ -4,21 +4,27 @@
 @{
     ViewData["Title"] = "Index";
 }
-
+<div class="centered-container">
 <h1>Index</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
+    <p>
+        <a asp-page="Create" class="wood-button">Create New Quote</a> 
+    </p>
+    <p>-or</p>
+</div>
 
 <form method="get">
     <div class="form-group">
+            <div class="centered-container">
         <label for="searchInput">Search by Customer Name:</label>
         <input type="text" id="searchInput" name="SearchString" value="@Model.SearchString" class="form-control" />
-    </div>
+    </div></div>
+        <div class="centered-container">
     <button type="submit" class="btn btn-primary">Search</button>
+        </div>
 </form>
 
+<div class="table-container">
 <table class="table">
     <thead>
         <tr>
@@ -69,17 +75,62 @@
 
 
                 <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                     <a asp-page="./Edit" asp-route-id="@item.Id" class="oval-button">Edit</a>
+                     <a asp-page="./Details" asp-route-id="@item.Id" class="oval-button">Details</a>
+                        <a asp-page="./Delete" asp-route-id="@item.Id" class="oval-button">Delete</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+</div>
 <style>
+    .centered-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
     .form-control {
-        max-width: 500px;
+        width: 500px;
         margin-bottom: 20px;
     }
+
+    .wood-button {
+        background-color: #8B4513;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 2px;
+        text-decoration: none;
+    }
+
+        .wood-button:hover {
+            background-color: darkred;
+        }
+
+        .wood-button:active {
+            background-color: brown;
+        }
+
+    .table-container {
+        background-color: #F5F5DC;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 20px;
+        border:groove;
+    }
+
+    .oval-button {
+        display: inline-block;
+        background-color: blue;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 20px;
+        text-decoration: none;
+        margin-right: 8px;
+    }
+
+        .oval-button:hover {
+            color: #F5F5DC;
+        }
 </style>
