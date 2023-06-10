@@ -20,8 +20,8 @@
         <dt class="col-sm-2">
             @Html.DisplayName("Delivery")
         </dt>
-        <dd class="col-sm-10">        
-                @Html.DisplayFor(model => model.Quote.DeliveryType.Type)            
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quote.DeliveryType.Type)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Quote.Width)
@@ -46,6 +46,12 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Quote.Material.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayName("Price")
+        </dt>
+        <dd class="col-sm-10">
+            $@Html.DisplayFor(model => model.Quote.Price)
         </dd>
     </dl>
 </div>

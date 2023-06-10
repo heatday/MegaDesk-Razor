@@ -73,7 +73,7 @@ public static class SeedData
 
                 new Material
                 {
-                    Name = "Veneeer"
+                    Name = "Veneer"
                 },
 
                 new Material

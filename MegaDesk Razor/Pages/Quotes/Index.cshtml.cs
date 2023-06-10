@@ -40,3 +40,5 @@ namespace MegaDesk_Razor.Pages.Quotes
 }
     
 
+
+
