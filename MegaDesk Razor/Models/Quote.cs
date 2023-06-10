@@ -14,11 +14,11 @@ namespace MegaDesk_Razor.Models
         public DateTime Date { get; set; } 
         public int DeliveryTypeId { get; set; }
         public int MaterialId { get; set; }
-        [Range(1, int.MaxValue, ErrorMessage = "Please enter a valid width.")]
+        [Range(24, 96, ErrorMessage = "Please enter a valid width.")]
         public int Width { get; set; }
-        [Range(1, int.MaxValue, ErrorMessage = "Please enter a valid depth.")]
+        [Range(12, 48, ErrorMessage = "Please enter a valid depth.")]
         public int Depth { get; set; }
-        [Range(0, int.MaxValue, ErrorMessage = "Please enter a valid drawer count.")]
+        [Range(0, 7, ErrorMessage = "Please enter a valid drawer count.")]
         public int DrawerCount { get; set; }
 
         public DeliveryType? DeliveryType { get; set; }
