@@ -10,11 +10,20 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+
+<form method="get">
+    <div class="form-group">
+        <label for="searchInput">Search by Customer Name:</label>
+        <input type="text" id="searchInput" name="SearchString" value="@Model.SearchString" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                Customer Name
+                <a asp-page="./Index" asp-route-sortBy="CustomerName">Customer Name</a>
             </th>
             <th>
                 Quote Price
@@ -25,7 +34,11 @@
             <th>
                 Material
             </th>
+            <th>
+                <a asp-page="./Index" asp-route-sortBy="Date">Date</a>
+            </th>
             <th></th>
+
         </tr>
     </thead>
     <tbody>
@@ -50,6 +63,9 @@
                         @Html.DisplayFor(modelItem => item.Material.Name)
                     }
                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
 
 
                 <td>
@@ -61,3 +77,9 @@
         }
     </tbody>
 </table>
+<style>
+    .form-control {
+        max-width: 500px;
+        margin-bottom: 20px;
+    }
+</style>

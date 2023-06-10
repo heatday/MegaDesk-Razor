@@ -15,7 +15,7 @@ namespace MegaDesk_Razor.Pages.Quotes
     {
         private readonly MegaDesk_Razor.Data.MegaDeskContext _context;
 
-        public CreateModel(MegaDesk_Razor.Data.MegaDeskContext context)
+        public  CreateModel(MegaDesk_Razor.Data.MegaDeskContext context)
         {
             _context = context;
         }

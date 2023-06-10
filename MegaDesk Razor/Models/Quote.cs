@@ -1,16 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace MegaDesk_Razor.Models
 {
     public class Quote
     {
         public int Id { get; set; }
+        [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$")]
+        [Required]
+        [StringLength(30)]
         public string? CustomerName { get; set; }
+        public DateTime Date { get; set; } 
         public int DeliveryTypeId { get; set; }
         public int MaterialId { get; set; }
+        [Range(1, int.MaxValue, ErrorMessage = "Please enter a valid width.")]
         public int Width { get; set; }
+        [Range(1, int.MaxValue, ErrorMessage = "Please enter a valid depth.")]
         public int Depth { get; set; }
+        [Range(0, int.MaxValue, ErrorMessage = "Please enter a valid drawer count.")]
         public int DrawerCount { get; set; }
 
         public DeliveryType? DeliveryType { get; set; }
@@ -18,6 +26,10 @@ namespace MegaDesk_Razor.Models
         public Material? Material { get; set; }
 
         public double Price => CalculatePrice();
+        public Quote()
+        {
+            Date = DateTime.Now; 
+        }
 
         private double CalculatePrice()
         {
